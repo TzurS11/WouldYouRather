@@ -19,7 +19,7 @@ module.exports = async (err, files, client) => {
 
 
       await rest.put(
-        Routes.applicationCommands("985254683792797736"),
+        Routes.applicationCommands(client.user.id),
         { body: client.interactionsArray },
       );
 

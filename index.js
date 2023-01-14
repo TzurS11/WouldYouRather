@@ -1,9 +1,18 @@
-const fs = require('fs')
-const { Client, Intents, Collection, Permissions, MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const client = new Client({ intents: 32269, partials: ['CHANNEL'] });
-require('dotenv').config()
-
-
+const fs = require("fs");
+const {
+  Client,
+  Collection,
+  messageLink,
+  Partials,
+  ChannelType,
+  Status,
+  ActivityType,
+} = require("discord.js");
+const client = new Client({
+  intents: 32269,
+  partials: [Partials.Channel, Partials.Message],
+});
+require("dotenv").config();
 
 client.aliases = new Collection();
 client.interactions = new Collection();
@@ -13,22 +22,47 @@ fs.readdir("./events/", (err, files) => {
   eventHandler(err, files, client);
 });
 
+const db = require("./database/index.js");
 
-client.on('interactionCreate', async interaction => {
+client.on("interactionCreate", (interaction) => {
   if (!interaction.isButton()) return;
-  if (interaction.customId === 'inviteBtn') {
-    try {
-      const inviteRow = new MessageActionRow()
-      inviteRow.addComponents(
-        new MessageButton()
-          .setLabel('Click here to invite me to your server!')
-          .setStyle('LINK')
-          .setURL("https://discord.com/api/oauth2/authorize?client_id=985254683792797736&permissions=1&scope=applications.commands%20bot")
-      )
-     interaction.reply({content:"**Go to my profile and press <:add1:985489841582129194><:add2:985490952867176459><:add3:985489868010438696> or press on the button below!**",components:[inviteRow],ephemeral:true})
-    } catch (e) { }
+  let args = interaction.customId.split(" ");
+  if (args[0] == "rate") {
+    db.setAnswer(interaction.user.id, args[1], Number(args[2]));
+    return interaction.reply({
+      content: "Answer went through successfully!",
+      ephemeral: true,
+    });
   }
 });
 
+function removeFirstWord(str) {
+  const indexOfSpace = str.indexOf(" ");
 
-client.login(process.env.DISCORD_TOKEN)
+  if (indexOfSpace === -1) {
+    return "";
+  }
+
+  return str.slice(indexOfSpace + 1);
+}
+
+client.on("messageCreate", (message) => {
+  if (
+    message.channel.type == ChannelType.DM &&
+    message.author.id == "474645781786263552" &&
+    message.content.split(" ")[0] == "!add"
+  ) {
+    let content = removeFirstWord(message.content);
+    message.reply(`**Added question: **${content}`);
+    return db.addQuestion(content);
+  }
+});
+
+client.once("ready", () => {
+  client.user.setPresence({
+    status: "online",
+    activities: [{ name: "Would You Rather", type: ActivityType.Playing }],
+  });
+});
+
+client.login(process.env.DISCORD_TOKEN);
