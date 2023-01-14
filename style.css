@@ -1,0 +1,82 @@
+@font-face {
+  font-family: Whitney;
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://cdn.jsdelivr.net/gh/Overimagine1/old-discord-font/fonts/24bda95d153a319704c33329f3ab84bb.woff2)
+    format("woff2");
+}
+body {
+  background-image: linear-gradient(to left, #745555, #484a6d);
+  margin: 0;
+  user-select: none;
+}
+
+.title,
+.subtitle {
+  font-size: 100px;
+  position: relative;
+  font-family: "Whitney";
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 30px;
+  color: white;
+  text-align: center;
+}
+.subtitle {
+  padding-bottom: 40px;
+  margin-top: 10px;
+  font-size: 50px;
+  font-weight: lighter;
+}
+
+.title-div {
+  margin-bottom: 0;
+  height: 50%;
+  padding-top: 1px;
+  background-image: linear-gradient(to right, #d73c3e, #5865f2);
+  border-bottom: solid;
+  border-bottom-color: white;
+  box-shadow: 0px 10px 100px black;
+}
+
+.invite {
+  width: 100%;
+  height: 100px;
+}
+
+.invitedivcontainer {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50px;
+  width: 800px;
+  cursor: pointer;
+  margin-top: 30px;
+  background-color: rgb(204, 204, 204);
+  transition: background-color 0.24s, margin-top 0.1s;
+  /* box-shadow: 0px 10px 100px black; */
+}
+
+.invitedivcontainer:hover {
+  background-color: rgb(255, 255, 255);
+  margin-top: 35px;
+}
+
+.invitedivcontainer:active {
+    margin-top: 40px;
+  }
+
+.inviteText {
+  margin-top: 0;
+  font-family: "Whitney";
+  font-size: 70px;
+  color: royalblue;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 10px;
+  user-select: none;
+}
+
+.inviteText > a {
+  text-decoration: none;
+  color: #5865f2;
+}
