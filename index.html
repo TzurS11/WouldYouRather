@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <title>WouldYa</title>
-    <link rel="icon" type="image/x-icon" href="assets/boticon.png">
-    <script src="web-script.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/boticon.png" />
+    <script src="web-script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -13,7 +13,31 @@
     </div>
     <div class="invite">
       <div class="invitedivcontainer">
-        <p class="inviteText"><a href="https://discord.com/api/oauth2/authorize?client_id=1063817771114315816&permissions=3072&scope=bot%20applications.commands" target="_blank">INVITE TO SERVER</a></p>
+        <p class="inviteText">
+          <a
+            href="https://discord.com/api/oauth2/authorize?client_id=1063817771114315816&permissions=3072&scope=bot%20applications.commands"
+            target="_blank"
+            >INVITE TO SERVER</a
+          >
+        </p>
+      </div>
+    </div>
+    <div class="example-container">
+      <img src="assets/boticon.png" class="botpfp" />
+      <div class="message">
+        <p id="question-title" class="title">
+          Would you rather know how you will die OR when you will die?
+        </p>
+        <p class="firstoption">
+          First Option <br /><span id="leftPeople" class="votes leftPeople"
+            >something</span
+          >
+        </p>
+        <p class="secondoption">
+          Second Option <br /><span id="rightPeople" class="votes rightPeople"
+            >something</span
+          >
+        </p>
       </div>
     </div>
   </body>

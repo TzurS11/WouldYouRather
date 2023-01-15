@@ -11,7 +11,7 @@ body {
   user-select: none;
 }
 
-.title,
+.title-div > .title,
 .subtitle {
   font-size: 100px;
   position: relative;
@@ -40,38 +40,36 @@ body {
 }
 
 .invite {
-  width: 100%;
-  height: 100px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  /* width: 800px; */
 }
 
 .invitedivcontainer {
   margin-left: auto;
   margin-right: auto;
   border-radius: 50px;
-  width: 800px;
   cursor: pointer;
   margin-top: 30px;
-  background-color: rgb(204, 204, 204);
+  background-color: rgb(255, 255, 255, 0.5);
   transition: background-color 0.24s, margin-top 0.1s;
   /* box-shadow: 0px 10px 100px black; */
 }
 
 .invitedivcontainer:hover {
   background-color: rgb(255, 255, 255);
-  margin-top: 35px;
 }
 
-.invitedivcontainer:active {
-    margin-top: 40px;
-  }
-
 .inviteText {
-  margin-top: 0;
+  margin: 0;
   font-family: "Whitney";
   font-size: 70px;
   color: royalblue;
   font-weight: bold;
   text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
   letter-spacing: 10px;
   user-select: none;
 }
@@ -79,4 +77,64 @@ body {
 .inviteText > a {
   text-decoration: none;
   color: #5865f2;
+}
+
+.example-container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  /* left: 50%; */
+}
+
+.botpfp {
+  margin-right: 10px;
+  /* float: left; */
+  border: solid;
+  border-color: rgba(47, 49, 54, 255);
+  border-width: 5px;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+}
+
+.message {
+  max-width: 400px;
+  /* float:right; */
+  display: inline-block;
+  background-color: rgba(47, 49, 54, 255);
+  border-radius: 10px;
+  padding-right: 100px;
+  margin-left: 10px;
+  /* height: 100px; */
+  margin-left: 0px;
+}
+
+.message > .title {
+  margin-left: 10px;
+  color: white;
+  font-family: "Whitney";
+  font-weight: bold;
+}
+
+.message > .firstoption,
+.message > .secondoption {
+  margin-right: 50px;
+  margin-left: 10px;
+  color: white;
+  font-family: "Whitney";
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* .message > .title {
+  margin-left: 10px;
+  color:white;
+  font-family: "Whitney";
+  font-weight: bold;
+} */
+
+
+.votes{
+  font-weight: lighter;
+  /* margin-right: 100px; */
 }
