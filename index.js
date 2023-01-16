@@ -7,6 +7,7 @@ const {
   ChannelType,
   Status,
   ActivityType,
+  EmbedBuilder,
 } = require("discord.js");
 const client = new Client({
   intents: 32269,
@@ -24,15 +25,39 @@ fs.readdir("./events/", (err, files) => {
 
 const db = require("./database/index.js");
 
-client.on("interactionCreate", (interaction) => {
+client.on("interactionCreate", async (interaction) => {
   if (!interaction.isButton()) return;
   let args = interaction.customId.split(" ");
   if (args[0] == "rate") {
-    db.setAnswer(interaction.user.id, args[1], Number(args[2]));
-    return interaction.reply({
-      content: "Answer went through successfully!",
-      ephemeral: true,
-    });
+    await db.setAnswer(interaction.user.id, args[1], Number(args[2]));
+    let channel = interaction.message.channel;
+    let messageid = interaction.message.id;
+    let answers = db.getAnswers(args[1]);
+    let newEmbed = new EmbedBuilder()
+      .setTitle(interaction.message.embeds[0].title)
+      .addFields(
+        {
+          name: "First Option",
+          value: `${answers.left} people`,
+          inline: true,
+        },
+        {
+          name: "Second Option",
+          value: `${answers.right} people`,
+          inline: true,
+        }
+      );
+    channel.messages
+      .fetch(messageid)
+      .then((msg) => msg.edit({ embeds: [newEmbed] }));
+    interaction.deferUpdate();
+    // return interaction
+    //   .reply({
+    //     content: "Answer went through successfully!",
+    //   })
+    //   .then((msgreply) => {
+    //     interaction.deleteReply();
+    //   });
   }
 });
 

@@ -18,15 +18,16 @@ module.exports = {
     let question = db.getQuestion(db.getRandId());
 
     let questionEmbed = new EmbedBuilder().setTitle(question.text);
+    let answers = db.getAnswers(question.ID);
     questionEmbed.addFields(
       {
         name: "First Option",
-        value: `${db.getAnswers(question.ID).left} people`,
+        value: `${answers.left} people`,
         inline: true,
       },
       {
         name: "Second Option",
-        value: `${db.getAnswers(question.ID).right} people`,
+        value: `${answers.right} people`,
         inline: true,
       }
     );
